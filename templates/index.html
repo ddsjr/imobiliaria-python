@@ -3,61 +3,196 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Imobiliária - Encontre seu Imóvel</title>
-    <!-- Tailwind CSS para o design moderno do site -->
-    <script src="https://cdn.tailwindcss.com"></script>
-</head>
-<body class="bg-gray-100 min-h-screen">
+    <title>Douglas Imóveis - Encontre o seu próximo lar</title>
+    
+    <!-- Google Fonts: Fonte Montserrat para ficar idêntica ao design profissional -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
-    <!-- Cabeçalho / Banner principal -->
-    <header class="bg-blue-600 text-white py-10 shadow-md">
-        <div class="max-w-6xl mx-auto px-4 text-center">
-            <h1 class="text-4xl font-bold mb-2">🏠 Imobiliária Python</h1>
-            <p class="text-blue-100 text-lg">Encontre casas, apartamentos e salões comerciais em um só lugar.</p>
+    <!-- Tailwind CSS para estilização -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Montserrat', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Ícones Lucide -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body class="bg-gray-100 min-h-screen font-sans text-gray-800 antialiased">
+
+    <!-- 1. BANNER TOPO SUPERIOR -->
+    <div class="bg-stone-950 text-white text-xs py-2 px-4 border-b border-stone-800 tracking-wide">
+        <div class="max-w-6xl mx-auto flex flex-wrap justify-between items-center gap-2">
+            <div class="flex items-center space-x-5">
+                <span class="flex items-center gap-1.5 font-medium">📞 (11) 3456-7890</span>
+                <span class="flex items-center gap-1.5 font-medium">💬 WhatsApp (11) 98765-4321</span>
+                <span class="hidden sm:inline text-stone-400">CRECI 12.345-J</span>
+            </div>
+            <div>
+                <span class="border border-stone-700 px-3 py-1 rounded-full text-stone-300 bg-stone-900 font-semibold text-[11px]">Desde 1996</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- 2. CABEÇALHO PRINCIPAL COM LOGO EM IMAGEM -->
+    <header class="bg-[#a80808] text-white pt-5 pb-12 shadow-lg">
+        <div class="max-w-6xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-4 mb-8">
+            
+            <!-- LOGO REAL EM IMAGEM -->
+            <div class="bg-white px-4 py-2 rounded-xl shadow-md flex items-center justify-center">
+                <!-- Busca a imagem da logo salva na pasta static/logo.png -->
+                <img src="/static/logo.png" alt="Douglas Imóveis" class="h-12 w-auto object-contain" onerror="this.onerror=null; this.src='https://via.placeholder.com/180x50?text=Douglas+Im%C3%B3veis';">
+            </div>
+
+            <!-- MENU DE NAVEGAÇÃO -->
+            <nav class="flex flex-wrap items-center justify-center gap-2 sm:gap-5 text-sm font-semibold tracking-wide">
+                <a href="#" class="bg-white text-gray-900 px-4 py-1.5 rounded-lg shadow-sm">Home</a>
+                <a href="#" class="hover:text-red-200 transition">Imóveis</a>
+                <a href="#" class="hover:text-red-200 transition">Quem somos</a>
+                <a href="#" class="hover:text-red-200 transition">Jurídico</a>
+                <a href="#" class="hover:text-red-200 transition">Contato</a>
+            </nav>
+
+            <!-- BOTÃO SIMULADOR CAIXA -->
+            <a href="#" class="bg-[#0066b3] hover:bg-sky-700 text-white px-4 py-2 rounded-lg font-semibold text-sm flex items-center gap-2 shadow transition">
+                <i data-lucide="calculator" class="w-4 h-4"></i>
+                Simulador Caixa
+            </a>
+        </div>
+
+        <!-- TÍTULO E SUBTÍTULO DO HERO -->
+        <div class="text-center max-w-3xl mx-auto px-4 mt-6">
+            <h1 class="text-3xl md:text-5xl font-extrabold tracking-tight mb-3">Encontre o seu próximo lar</h1>
+            <p class="text-red-100 text-base md:text-lg font-normal">Casas, apartamentos e comerciais de alto padrão em um só lugar.</p>
+        </div>
+
+        <!-- BARRA DE BUSCA CENTRALIZADA -->
+        <div class="max-w-3xl mx-auto px-4 mt-8">
+            <div class="bg-white p-2 rounded-full shadow-2xl flex flex-wrap md:flex-nowrap items-center gap-2 text-gray-700">
+                
+                <!-- Toggle Venda/Aluguel -->
+                <div class="bg-gray-100 p-1 rounded-full flex items-center font-semibold text-xs">
+                    <button class="bg-red-600 text-white px-5 py-2 rounded-full shadow">Venda</button>
+                    <button class="text-gray-600 hover:text-gray-900 px-5 py-2 rounded-full">Aluguel</button>
+                </div>
+
+                <!-- Input Localização -->
+                <div class="flex items-center gap-2 flex-1 px-3 py-1 border-r border-gray-200">
+                    <i data-lucide="map-pin" class="w-4 h-4 text-gray-400"></i>
+                    <input type="text" placeholder="Localização" class="w-full text-sm outline-none bg-transparent placeholder-gray-400 font-medium">
+                </div>
+
+                <!-- Select Tipo de Imóvel -->
+                <div class="flex items-center gap-2 px-3 py-1">
+                    <select class="text-sm text-gray-600 bg-transparent outline-none cursor-pointer font-medium">
+                        <option value="">Tipo de Imóvel</option>
+                        <option value="casa">Casa</option>
+                        <option value="apartamento">Apartamento</option>
+                        <option value="comercial">Comercial</option>
+                    </select>
+                </div>
+
+                <!-- Botão Buscar -->
+                <button class="bg-red-600 hover:bg-red-700 text-white p-3 rounded-full transition shadow">
+                    <i data-lucide="search" class="w-5 h-5"></i>
+                </button>
+            </div>
         </div>
     </header>
 
-    <!-- Área principal do site -->
-    <main class="max-w-6xl mx-auto px-4 py-8">
-        <h2 class="text-2xl font-bold text-gray-800 mb-6">Imóveis Disponíveis</h2>
+    <!-- 3. NAV DE CATEGORIAS (ÍCONES E ABAS) -->
+    <div class="bg-white border-b shadow-sm">
+        <div class="max-w-5xl mx-auto px-4 flex flex-wrap justify-center md:justify-between items-center gap-6 py-3.5 text-sm font-semibold text-gray-600">
+            <a href="#" class="flex items-center gap-2 hover:text-red-600 transition">
+                <i data-lucide="home" class="w-4 h-4"></i> Casas
+            </a>
+            <a href="#" class="flex items-center gap-2 hover:text-red-600 transition">
+                <i data-lucide="building" class="w-4 h-4"></i> Apartamentos
+            </a>
+            <a href="#" class="flex items-center gap-2 text-red-600 font-bold border-b-2 border-red-600 pb-1">
+                <i data-lucide="store" class="w-4 h-4"></i> Comercial
+            </a>
+            <a href="#" class="flex items-center gap-2 hover:text-red-600 transition">
+                <i data-lucide="monitor" class="w-4 h-4"></i> Salas
+            </a>
+            <a href="#" class="flex items-center gap-2 hover:text-red-600 transition">
+                <i data-lucide="warehouse" class="w-4 h-4"></i> Salões
+            </a>
+            <a href="#" class="flex items-center gap-2 hover:text-red-600 transition">
+                <i data-lucide="mountain" class="w-4 h-4"></i> Terrenos
+            </a>
+        </div>
+    </div>
 
-        <!-- Onde os cartões dos imóveis vão aparecer -->
+    <!-- 4. CONTEÚDO PRINCIPAL (LISTAGEM DE IMÓVEIS) -->
+    <main class="max-w-6xl mx-auto px-4 py-10">
+        <h2 class="text-2xl font-bold text-gray-900 mb-6 tracking-tight">Imóveis em Destaque</h2>
+
         <div id="lista-imoveis" class="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <p class="text-gray-500">Carregando imóveis do banco de dados...</p>
+            <p class="text-gray-500 col-span-3">Carregando imóveis do banco de dados...</p>
         </div>
     </main>
 
-    <!-- Script em JavaScript para buscar os dados da nossa API em Python -->
+    <!-- SCRIPT JAVASCRIPT DINÂMICO -->
     <script>
+        lucide.createIcons();
+
         async function carregarImoveis() {
             try {
-                // Chama a rota Python que criamos!
                 const resposta = await fetch('/imoveis');
                 const imoveis = await resposta.json();
 
                 const container = document.getElementById('lista-imoveis');
-                container.innerHTML = ''; // Limpa a mensagem de carregando
+                container.innerHTML = '';
 
-                // Para cada imóvel retornado do Supabase, cria um "cartão" visual
                 imoveis.forEach(imovel => {
+                    const isVenda = imovel.tipo.toLowerCase() === 'venda';
+                    const badgeColor = isVenda ? 'bg-red-600 text-white' : 'bg-black text-white';
+                    const tipoTexto = isVenda ? 'Venda' : 'Aluguel';
+
+                    const precoFormatado = Number(imovel.preco).toLocaleString('pt-BR', {
+                        minimumFractionDigits: 0
+                    });
+                    const complementoPreco = isVenda ? '' : ' / mês';
+
                     const card = `
-                        <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300">
-                            <img src="${imovel.imagem_url || 'https://via.placeholder.com/400x250'}" alt="${imovel.titulo}" class="w-full h-48 object-cover">
-                            <div class="p-5">
-                                <span class="inline-block bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded font-semibold uppercase mb-2">
-                                    ${imovel.tipo} • ${imovel.categoria}
+                        <div class="bg-white rounded-2xl shadow-sm hover:shadow-md border border-gray-200 overflow-hidden transition-all duration-300 flex flex-col justify-between">
+                            
+                            <div class="relative">
+                                <img src="${imovel.imagem_url || 'https://via.placeholder.com/400x250'}" alt="${imovel.titulo}" class="w-full h-48 object-cover">
+                                <span class="absolute top-3 right-3 ${badgeColor} text-[11px] font-bold px-3 py-1 rounded-full shadow">
+                                    ${tipoTexto}
                                 </span>
-                                <h3 class="text-xl font-bold text-gray-900 mb-2">${imovel.titulo}</h3>
-                                <p class="text-gray-600 text-sm mb-4 line-clamp-2">${imovel.descricao}</p>
-                                <div class="text-gray-500 text-xs mb-4">
-                                    📍 ${imovel.bairro}, ${imovel.cidade}
+                            </div>
+
+                            <div class="p-5 flex-1 flex flex-col justify-between">
+                                <div>
+                                    <h3 class="text-sm font-bold text-gray-900 mb-1 leading-snug">${imovel.titulo}</h3>
+                                    <div class="text-lg font-extrabold text-gray-900 mb-4">
+                                        R$ ${precoFormatado}<span class="text-xs font-normal text-gray-600">${complementoPreco}</span>
+                                    </div>
                                 </div>
-                                <div class="border-t pt-4 flex justify-between items-center">
-                                    <span class="text-2xl font-bold text-blue-600">R$ ${Number(imovel.preco).toLocaleString('pt-BR')}</span>
-                                    <div class="text-xs text-gray-500 space-x-2">
-                                        <span>🛏️ ${imovel.quartos}</span>
-                                        <span>🚿 ${imovel.banheiros}</span>
-                                        <span>📐 ${imovel.area_m2}m²</span>
+
+                                <div>
+                                    <div class="flex items-center gap-2 text-xs text-gray-600 mb-3 bg-gray-50 p-2 rounded-lg font-semibold">
+                                        <span>${imovel.quartos} 🛏️</span>
+                                        <span class="text-gray-300">|</span>
+                                        <span>${imovel.banheiros} 🚿</span>
+                                        <span class="text-gray-300">|</span>
+                                        <span>${imovel.area_m2}m²</span>
+                                    </div>
+
+                                    <div class="text-xs text-gray-500 font-medium flex items-center gap-1">
+                                        📍 ${imovel.bairro}, ${imovel.cidade}
                                     </div>
                                 </div>
                             </div>
@@ -66,12 +201,11 @@
                     container.innerHTML += card;
                 });
             } catch (erro) {
-                console.error("Erro ao buscar imóveis:", erro);
-                document.getElementById('lista-imoveis').innerHTML = '<p class="text-red-500">Erro ao carregar os imóveis.</p>';
+                console.error("Erro ao carregar imóveis:", erro);
+                document.getElementById('lista-imoveis').innerHTML = '<p class="text-red-500">Erro ao carregar imóveis do banco de dados.</p>';
             }
         }
 
-        // Executa a busca assim que a página carregar
         carregarImoveis();
     </script>
 </body>
