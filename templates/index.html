@@ -141,12 +141,10 @@
     <script>
         lucide.createIcons();
 
-        // Variáveis globais para guardar o estado atual dos filtros
         let filtroTipoAtual = '';
         let filtroCategoriaAtual = '';
 
         function atualizarEstiloBotoes() {
-            // Atualiza estilo dos botões de Venda / Aluguel
             const btnVenda = document.getElementById('btn-venda');
             const btnAluguel = document.getElementById('btn-aluguel');
 
@@ -161,7 +159,6 @@
                 btnAluguel.className = "text-gray-600 hover:text-gray-900 px-5 py-2 font-medium";
             }
 
-            // Atualiza destaque da aba de Categoria ativa
             const botoesCategoria = document.querySelectorAll('.btn-cat');
             botoesCategoria.forEach(btn => {
                 const cat = btn.getAttribute('data-cat');
@@ -172,7 +169,6 @@
                 }
             });
 
-            // Exibe ou oculta o botão de "Limpar Filtros"
             const btnLimpar = document.getElementById('btn-limpar-filtros');
             if (filtroTipoAtual || filtroCategoriaAtual) {
                 btnLimpar.classList.remove('hidden');
@@ -182,14 +178,12 @@
         }
 
         function filtrarTipo(tipo) {
-            // Se clicar no mesmo tipo selecionado, cancela a seleção
             filtroTipoAtual = (filtroTipoAtual === tipo) ? '' : tipo;
             atualizarEstiloBotoes();
             carregarImoveis();
         }
 
         function filtrarCategoria(categoria) {
-            // Se clicar na mesma categoria selecionada, cancela
             filtroCategoriaAtual = (filtroCategoriaAtual === categoria) ? '' : categoria;
             atualizarEstiloBotoes();
             carregarImoveis();
@@ -205,7 +199,6 @@
 
         async function carregarImoveis() {
             try {
-                // Constrói a URL dinamicamente com os filtros selecionados
                 let url = '/imoveis?';
                 if (filtroTipoAtual) url += `tipo=${filtroTipoAtual}&`;
                 if (filtroCategoriaAtual) url += `categoria=${filtroCategoriaAtual}&`;
@@ -216,7 +209,6 @@
                 const container = document.getElementById('lista-imoveis');
                 container.innerHTML = '';
 
-                // Filtro adicional local para busca rápida por texto (bairro/cidade)
                 const textoBusca = document.getElementById('input-busca').value.toLowerCase();
                 const imoveisFiltrados = imoveis.filter(imovel => {
                     if (!textoBusca) return true;
@@ -245,6 +237,9 @@
                     });
                     const complementoPreco = isVenda ? '' : ' / mês';
 
+                    // Formata o ID do imóvel com 4 dígitos (ex: 1 vira '0001')
+                    const idFormatado = String(imovel.id).padStart(4, '0');
+
                     const card = `
                         <div class="bg-white rounded-2xl shadow-sm hover:shadow-md border border-gray-200 overflow-hidden transition-all duration-300 flex flex-col justify-between">
                             
@@ -264,12 +259,18 @@
                                 </div>
 
                                 <div>
-                                    <div class="flex items-center gap-2 text-xs text-gray-600 mb-3 bg-gray-50 p-2 rounded-lg font-semibold">
-                                        <span>${imovel.quartos} 🛏️</span>
-                                        <span class="text-gray-300">|</span>
-                                        <span>${imovel.banheiros} 🚿</span>
-                                        <span class="text-gray-300">|</span>
-                                        <span>${imovel.area_m2}m²</span>
+                                    <!-- Informações Técnicas incluindo o ID do Imóvel -->
+                                    <div class="flex items-center justify-between text-xs text-gray-600 mb-3 bg-gray-50 p-2 rounded-lg font-semibold">
+                                        <div class="flex items-center gap-1.5">
+                                            <span>${imovel.quartos} 🛏️</span>
+                                            <span class="text-gray-300">|</span>
+                                            <span>${imovel.banheiros} 🚿</span>
+                                            <span class="text-gray-300">|</span>
+                                            <span>${imovel.area_m2}m²</span>
+                                        </div>
+                                        <div class="text-[11px] font-bold text-gray-500 bg-gray-200 px-2 py-0.5 rounded">
+                                            ID: ${idFormatado}
+                                        </div>
                                     </div>
 
                                     <div class="text-xs text-gray-500 font-medium flex items-center gap-1">
@@ -287,7 +288,6 @@
             }
         }
 
-        // Carrega imóveis ao iniciar a tela
         carregarImoveis();
     </script>
 </body>
